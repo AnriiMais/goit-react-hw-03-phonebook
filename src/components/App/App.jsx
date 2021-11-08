@@ -26,8 +26,14 @@ class App extends Component {
   };
   addContacts = contact => {
     const inputName = contact.name;
+    const inputNumber = contact.number;
     this.setState(prev => {
-      if (prev.contacts.every(contact => contact.name !== inputName)) {
+      if (
+        prev.contacts.every(
+          contact =>
+            contact.name !== inputName && inputNumber !== contact.number,
+        )
+      ) {
         return {
           contacts: [contact, ...prev.contacts],
         };
@@ -42,7 +48,7 @@ class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
-    const filterNormalized = filter;
+    const filterNormalized = filter.toLowerCase();
     const filterContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filterNormalized),
     );

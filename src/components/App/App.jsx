@@ -31,7 +31,8 @@ class App extends Component {
       if (
         prev.contacts.every(
           contact =>
-            contact.name !== inputName && inputNumber !== contact.number,
+            contact.name.toLowerCase() !== inputName.toLowerCase() &&
+            inputNumber !== contact.number,
         )
       ) {
         return {
